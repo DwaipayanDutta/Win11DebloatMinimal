@@ -1,6 +1,6 @@
 # Win11DebloatMinimal
 
-A minimal PowerShell script to debloat Windows 10/11, inspired by [Win11Debloat](https://github.com/Sycnex/Debloat-Windows-10). Removes common bloatware apps, disables telemetry, and applies UI tweaks.
+A minimal PowerShell script to debloat Windows 10/11, inspired by [Win10Debloat](https://github.com/Sycnex/Debloat-Windows-10). Removes common bloatware apps, disables telemetry, and applies UI tweaks.
 
 ## Features
 
