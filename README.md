@@ -1,6 +1,6 @@
 # 🚀 Win11DebloatMinimal v2.0
 
-Tired of Windows 11 slowing you down with bloat? This enhanced PowerShell GUI tool helps you reclaim your system! Inspired by [Sophia Script for Windows](https://github.com/farag2/Sophia-Script-for-Windows) and [ChrisTitusTech/winutil](https://github.com/ChrisTitusTech/winutil).
+Tired of Windows 11 slowing you down with bloat? This enhanced PowerShell GUI tool helps you reclaim your system! 
 
 ## ✨ What's New in v2.0
 
