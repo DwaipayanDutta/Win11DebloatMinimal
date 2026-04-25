@@ -1,4 +1,4 @@
-# Modules/Privacy.ps1 — Telemetry, data collection, and privacy tweaks
+﻿# Modules/Privacy.ps1  -  Telemetry, data collection, and privacy tweaks
 # All changes are registry/service-based and captured by the rollback engine.
 
 function Disable-TelemetryServices {

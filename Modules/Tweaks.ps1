@@ -1,4 +1,4 @@
-# Modules/Tweaks.ps1 — Explorer, taskbar, power, and UI tweaks
+﻿# Modules/Tweaks.ps1  -  Explorer, taskbar, power, and UI tweaks
 
 function Enable-FileExtensions {
     Invoke-Tweak 'Show File Extensions' {
@@ -150,7 +150,7 @@ function Disable-SleepOnAC {
 }
 
 function Set-WindowsUpdateNotifyOnly {
-    Invoke-Tweak 'Set Windows Update — Notify Before Download' {
+    Invoke-Tweak 'Set Windows Update  -  Notify Before Download' {
         # AUOptions: 2 = Notify, 3 = Auto download + notify install, 4 = Auto schedule
         Set-RegistryValue 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU' `
             'AUOptions' 2 -Description 'Windows Update auto-update option'

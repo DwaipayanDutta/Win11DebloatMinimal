@@ -1,4 +1,4 @@
-# Modules/Services.ps1 — Windows service hardening
+﻿# Modules/Services.ps1  -  Windows service hardening
 # All services are disabled via Set-Service (not registry hacks), so they survive updates.
 # Original startup types are recorded by Disable-ServiceSafe for full rollback.
 

@@ -1,4 +1,4 @@
-# UI/MainForm.ps1
+﻿# UI/MainForm.ps1
 # Windows Forms interface. Depends on Engine.ps1 and all Modules being dot-sourced first.
 
 Add-Type -AssemblyName System.Windows.Forms
@@ -92,7 +92,7 @@ function Add-TabPage {
 }
 
 # ---------------------------------------------------------------------------
-# Tab data — Label + function name pairs
+# Tab data  -  Label + function name pairs
 # ---------------------------------------------------------------------------
 
 $tabDataApps = @(
@@ -153,7 +153,7 @@ $tabDataTweaks = @(
     @{ Label = 'Disable Remote Assistance';              Fn = 'Disable-RemoteAssistance' }
     @{ Label = 'Disable Hibernate';                      Fn = 'Disable-Hibernate' }
     @{ Label = 'Disable Sleep on AC Power';              Fn = 'Disable-SleepOnAC' }
-    @{ Label = 'Set Windows Update — Notify Only';       Fn = 'Set-WindowsUpdateNotifyOnly' }
+    @{ Label = 'Set Windows Update  -  Notify Only';       Fn = 'Set-WindowsUpdateNotifyOnly' }
     @{ Label = 'Clean Temp Files (>1 day old)';          Fn = 'Invoke-CleanTempFiles' }
     @{ Label = 'Clean Windows Update Cache';             Fn = 'Invoke-CleanUpdateCache' }
     @{ Label = 'DANGER: Disable SmartScreen';            Fn = 'Disable-SmartScreen' }
@@ -211,7 +211,7 @@ $form.Controls.Add((New-Label "v$Script:EngineVersion  |  Inspired by Sophia Scr
 
 # Dry-run toggle
 $chkDryRun = New-Object System.Windows.Forms.CheckBox
-$chkDryRun.Text      = 'Dry Run (preview only — no changes written)'
+$chkDryRun.Text      = 'Dry Run (preview only  -  no changes written)'
 $chkDryRun.Font      = $F_NORMAL
 $chkDryRun.ForeColor = [System.Drawing.Color]::FromArgb(255, 200, 50)
 $chkDryRun.BackColor = [System.Drawing.Color]::Transparent
@@ -220,7 +220,7 @@ $chkDryRun.AutoSize  = $true
 $chkDryRun.Checked   = $Script:DryRun
 $chkDryRun.Add_CheckedChanged({
     $Script:DryRun = $chkDryRun.Checked
-    $label = if ($Script:DryRun) { '[DRY-RUN] Mode ON — no changes will be written' } else { 'Dry Run off — changes WILL be applied' }
+    $label = if ($Script:DryRun) { '[DRY-RUN] Mode ON  -  no changes will be written' } else { 'Dry Run off  -  changes WILL be applied' }
     Write-Log $label WARN
 })
 $form.Controls.Add($chkDryRun)
@@ -255,7 +255,7 @@ $cmbProfile.Add_SelectedIndexChanged({
             $clb.SetItemChecked($i, ($fn -and $fn -in $profileVar))
         }
     }
-    Write-Log "Profile '$selected' loaded — review selections and click Apply" INFO
+    Write-Log "Profile '$selected' loaded  -  review selections and click Apply" INFO
 })
 $form.Controls.Add($cmbProfile)
 
@@ -372,14 +372,14 @@ $btnApply = New-Button 'Apply Changes' 594 $btnY 140 -BG $C_ACCENT -Click {
     $richLog.Clear()
 
     Write-Log ('=' * 50) INFO
-    Write-Log "Starting$dryLabel — $($selected.Count) tweaks selected" INFO
+    Write-Log "Starting$dryLabel  -  $($selected.Count) tweaks selected" INFO
     Write-Log ('=' * 50) INFO
 
     Invoke-TweakList $selected
 
     $stats = Get-EngineStats
     Write-Log ('=' * 50) INFO
-    Write-Log "Done — Applied: $($stats.Applied)  Skipped: $($stats.Skipped)  Errors: $($stats.Errors)" SUCCESS
+    Write-Log "Done  -  Applied: $($stats.Applied)  Skipped: $($stats.Skipped)  Errors: $($stats.Errors)" SUCCESS
     Write-Log ('=' * 50) INFO
 
     if (-not $Script:DryRun -and $Script:RestoreActions.Count -gt 0) {
@@ -403,7 +403,7 @@ $form.Controls.Add($btnApply)
 
 Write-Log "Win11DebloatMinimal v$Script:EngineVersion ready. Select tweaks or load a profile, then click Apply." INFO
 if (-not (Test-Administrator)) {
-    Write-Log 'WARNING: Not running as Administrator — some tweaks will fail.' WARN
+    Write-Log 'WARNING: Not running as Administrator  -  some tweaks will fail.' WARN
 }
 
 # Pre-select a profile if one was passed via CLI

@@ -1,6 +1,6 @@
-<#
+﻿<#
 .SYNOPSIS
-    Win11DebloatMinimal — modular, safe, and reversible Windows debloat tool.
+    Win11DebloatMinimal  -  modular, safe, and reversible Windows debloat tool.
 
 .DESCRIPTION
     Removes bloatware, reduces telemetry, and applies performance tweaks.
@@ -10,7 +10,7 @@
     Apply a preset profile without the GUI: Minimal | Recommended | Aggressive
 
 .PARAMETER DryRun
-    Preview what would change — nothing is written to the registry or disk.
+    Preview what would change  -  nothing is written to the registry or disk.
 
 .PARAMETER NoUI
     Run headlessly (requires -Profile). Useful for scripted/automated deployments.
@@ -52,7 +52,7 @@ $ErrorActionPreference = 'Stop'
 $ScriptRoot = Split-Path -Parent $MyInvocation.MyCommand.Path
 
 # ---------------------------------------------------------------------------
-# Auto-elevate (GUI mode only — NoUI callers should handle elevation themselves)
+# Auto-elevate (GUI mode only  -  NoUI callers should handle elevation themselves)
 # ---------------------------------------------------------------------------
 
 function Request-Elevation {
@@ -84,14 +84,14 @@ function Import-AllModules {
     . "$ScriptRoot\Modules\Tweaks.ps1"
     . "$ScriptRoot\Modules\Services.ps1"
     . "$ScriptRoot\Modules\Features.ps1"
-    # Profiles depend on each other — load in order
+    # Profiles depend on each other  -  load in order
     . "$ScriptRoot\Profiles\Minimal.ps1"
     . "$ScriptRoot\Profiles\Recommended.ps1"
     . "$ScriptRoot\Profiles\Aggressive.ps1"
 }
 
 # ---------------------------------------------------------------------------
-# Restore mode — run a previously saved restore script
+# Restore mode  -  run a previously saved restore script
 # ---------------------------------------------------------------------------
 
 if ($Restore) {
@@ -128,7 +128,7 @@ if ($Profile -and $NoUI) {
     Invoke-TweakList $tweakList
 
     $stats = Get-EngineStats
-    Write-Log "Finished — Applied: $($stats.Applied)  Skipped: $($stats.Skipped)  Errors: $($stats.Errors)" SUCCESS
+    Write-Log "Finished  -  Applied: $($stats.Applied)  Skipped: $($stats.Skipped)  Errors: $($stats.Errors)" SUCCESS
 
     if (-not $DryRun -and $Script:RestoreActions.Count -gt 0) {
         Save-RestoreScript | Out-Null

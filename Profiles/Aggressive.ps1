@@ -1,5 +1,5 @@
-# Profiles/Aggressive.ps1
-# Maximum debloat. Review every item before applying — some are harder to undo.
+﻿# Profiles/Aggressive.ps1
+# Maximum debloat. Review every item before applying  -  some are harder to undo.
 # Requires $Script:ProfileRecommended to be defined (loaded after Recommended.ps1).
 
 $Script:ProfileAggressive = $Script:ProfileRecommended + @(

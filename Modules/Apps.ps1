@@ -1,9 +1,9 @@
-# Modules/Apps.ps1 — UWP / provisioned app removal
+﻿# Modules/Apps.ps1  -  UWP / provisioned app removal
 # Every function is safe to call multiple times (idempotent).
 # App removal is NOT reversible via the restore script; use Windows Settings > Apps to reinstall.
 
 # ---------------------------------------------------------------------------
-# Internal helper — removes both per-user package and provisioned package
+# Internal helper  -  removes both per-user package and provisioned package
 # ---------------------------------------------------------------------------
 
 function Remove-UwpApp {
@@ -21,7 +21,7 @@ function Remove-UwpApp {
              Where-Object DisplayName -like "*$Pattern*"
 
     if (-not $pkgs -and -not $provs) {
-        Write-Log "$DisplayName — not found or already removed" INFO
+        Write-Log "$DisplayName  -  not found or already removed" INFO
         return
     }
 
@@ -30,7 +30,7 @@ function Remove-UwpApp {
             Remove-AppxPackage -Package $p.PackageFullName -AllUsers -ErrorAction Stop
             Write-Log "Removed package: $($p.Name)" SUCCESS
         } catch {
-            Write-Log "Could not remove $($p.Name) — $_" WARN
+            Write-Log "Could not remove $($p.Name)  -  $_" WARN
         }
     }
 
@@ -39,13 +39,13 @@ function Remove-UwpApp {
             Remove-AppxProvisionedPackage -Online -PackageName $p.PackageName -ErrorAction Stop | Out-Null
             Write-Log "Removed provisioned: $($p.DisplayName)" SUCCESS
         } catch {
-            Write-Log "Could not remove provisioned $($p.DisplayName) — $_" WARN
+            Write-Log "Could not remove provisioned $($p.DisplayName)  -  $_" WARN
         }
     }
 }
 
 # ---------------------------------------------------------------------------
-# OneDrive — separate handler because it uses its own uninstaller
+# OneDrive  -  separate handler because it uses its own uninstaller
 # ---------------------------------------------------------------------------
 
 function Remove-OneDrive {
@@ -61,7 +61,7 @@ function Remove-OneDrive {
             Start-Process -FilePath $installer -ArgumentList '/uninstall' -Wait -WindowStyle Hidden
             Write-Log 'OneDrive uninstalled' SUCCESS
         } else {
-            Write-Log 'OneDrive installer not found — may already be removed' WARN
+            Write-Log 'OneDrive installer not found  -  may already be removed' WARN
         }
 
         # Remove leftover directories

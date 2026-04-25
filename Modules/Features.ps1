@@ -1,4 +1,4 @@
-# Modules/Features.ps1 — Windows Optional Features
+﻿# Modules/Features.ps1  -  Windows Optional Features
 # Disabling a feature is reversible via: Enable-WindowsOptionalFeature -Online -FeatureName <name>
 # Most require a restart to take effect.
 
@@ -24,7 +24,7 @@ function Disable-OptionalFeatureSafe {
         Disable-WindowsOptionalFeature -Online -FeatureName $FeatureName -NoRestart -ErrorAction Stop | Out-Null
         Write-Log "Disabled feature: $DisplayName (restart required)" SUCCESS
     } catch {
-        Write-Log "Could not disable $DisplayName — $_" ERROR
+        Write-Log "Could not disable $DisplayName  -  $_" ERROR
         $Script:Stats.Errors++
     }
 }

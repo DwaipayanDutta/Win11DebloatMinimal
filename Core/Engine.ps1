@@ -1,4 +1,4 @@
-#Requires -Version 5.1
+﻿#Requires -Version 5.1
 # Core/Engine.ps1
 # Central engine: logging, dry-run gate, rollback registry, and module runner.
 # All other modules depend on functions defined here.
@@ -33,7 +33,7 @@ function Initialize-Engine {
     $Script:LogFile = "$LogDir\Debloat_$ts.log"
 
     Write-Log "Win11DebloatMinimal v$Script:EngineVersion initialised" INFO
-    if ($Script:DryRun) { Write-Log '*** DRY-RUN MODE — no changes will be written ***' WARN }
+    if ($Script:DryRun) { Write-Log '*** DRY-RUN MODE  -  no changes will be written ***' WARN }
     Write-Log "Log: $Script:LogFile" INFO
 }
 
@@ -69,7 +69,7 @@ function Write-Log {
 }
 
 # ---------------------------------------------------------------------------
-# Registry helper — backs up original value for automatic rollback
+# Registry helper  -  backs up original value for automatic rollback
 # ---------------------------------------------------------------------------
 
 function Set-RegistryValue {
@@ -128,14 +128,14 @@ function Set-RegistryValue {
         }
         return $true
     } catch {
-        Write-Log "Registry error at $Path\$Name — $_" ERROR
+        Write-Log "Registry error at $Path\$Name  -  $_" ERROR
         $Script:Stats.Errors++
         return $false
     }
 }
 
 # ---------------------------------------------------------------------------
-# Service helper — captures startup type for rollback
+# Service helper  -  captures startup type for rollback
 # ---------------------------------------------------------------------------
 
 function Disable-ServiceSafe {
@@ -174,14 +174,14 @@ function Disable-ServiceSafe {
         Write-Log "Service disabled: $FriendlyName" SUCCESS
         return $true
     } catch {
-        Write-Log "Could not disable service $FriendlyName — $_" ERROR
+        Write-Log "Could not disable service $FriendlyName  -  $_" ERROR
         $Script:Stats.Errors++
         return $false
     }
 }
 
 # ---------------------------------------------------------------------------
-# Tweak runner — error isolation and stats tracking for each named tweak
+# Tweak runner  -  error isolation and stats tracking for each named tweak
 # ---------------------------------------------------------------------------
 
 function Invoke-Tweak {
@@ -197,7 +197,7 @@ function Invoke-Tweak {
         $Script:Stats.Applied++
         Write-Log "Done:     $Name" SUCCESS
     } catch {
-        Write-Log "Failed:   $Name — $_" ERROR
+        Write-Log "Failed:   $Name  -  $_" ERROR
         $Script:Stats.Errors++
     }
 }
@@ -211,7 +211,7 @@ function Invoke-TweakList {
     foreach ($name in $TweakNames) {
         $fn = Get-Item -Path "function:$name" -ErrorAction SilentlyContinue
         if ($fn) {
-            try { & $fn } catch { Write-Log "Uncaught error in $name — $_" ERROR; $Script:Stats.Errors++ }
+            try { & $fn } catch { Write-Log "Uncaught error in $name  -  $_" ERROR; $Script:Stats.Errors++ }
         } else {
             Write-Log "Tweak function not found: $name" WARN
             $Script:Stats.Skipped++
@@ -234,7 +234,7 @@ function Save-RestoreScript {
 
     $lines = @(
         '#Requires -RunAsAdministrator',
-        "# Win11DebloatMinimal Restore Script — generated $(Get-Date)",
+        "# Win11DebloatMinimal Restore Script  -  generated $(Get-Date)",
         "# Reverts changes made by Win11DebloatMinimal v$Script:EngineVersion",
         '',
         'Write-Host "Restoring Windows settings..." -ForegroundColor Cyan',
