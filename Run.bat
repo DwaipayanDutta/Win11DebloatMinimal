@@ -1,14 +1,9 @@
 @echo off
 :: Win11DebloatMinimal v3.0 Launcher
-:: Usage: Run.bat [Profile] [/DryRun] [/NoUI]
-::   Profiles: Minimal | Recommended | Aggressive
-::   Example:  Run.bat Recommended /DryRun /NoUI
-setlocal
+:: Double-click to open the GUI, or call with arguments:
+::   Run.bat -Profile Minimal
+::   Run.bat -Profile Recommended -DryRun -NoUI
+::   Run.bat -Profile Aggressive -NoUI
 
-set "SCRIPT=%~dp0Win11DebloatMinimal.ps1"
-set "ARGS=-NoProfile -ExecutionPolicy Bypass -File \"%SCRIPT%\""
-
-:: Pass through any arguments (e.g., "-Profile Recommended -DryRun -NoUI")
-if not "%~1"=="" set "ARGS=%ARGS% %*"
-
-PowerShell -Command "Start-Process PowerShell -ArgumentList '%ARGS%' -Verb RunAs"
+PowerShell -NoProfile -ExecutionPolicy Bypass -Command ^
+  "Start-Process PowerShell -ArgumentList '-NoProfile -ExecutionPolicy Bypass -File ""%~dp0Win11DebloatMinimal.ps1"" %*' -Verb RunAs"
