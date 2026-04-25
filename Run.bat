@@ -1,5 +1,14 @@
 @echo off
-:: Win11DebloatMinimal v2.0 Launcher
+:: Win11DebloatMinimal v3.0 Launcher
+:: Usage: Run.bat [Profile] [/DryRun] [/NoUI]
+::   Profiles: Minimal | Recommended | Aggressive
+::   Example:  Run.bat Recommended /DryRun /NoUI
+setlocal
 
-:: Request admin rights and run the script
-PowerShell -ExecutionPolicy Bypass -Command "Start-Process PowerShell -ArgumentList '-NoProfile -ExecutionPolicy Bypass -File \"%~dp0Win11DebloatMinimal.ps1\"' -Verb RunAs"
+set "SCRIPT=%~dp0Win11DebloatMinimal.ps1"
+set "ARGS=-NoProfile -ExecutionPolicy Bypass -File \"%SCRIPT%\""
+
+:: Pass through any arguments (e.g., "-Profile Recommended -DryRun -NoUI")
+if not "%~1"=="" set "ARGS=%ARGS% %*"
+
+PowerShell -Command "Start-Process PowerShell -ArgumentList '%ARGS%' -Verb RunAs"
