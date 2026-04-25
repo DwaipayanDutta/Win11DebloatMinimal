@@ -55,7 +55,7 @@ $form.BackColor = [System.Drawing.Color]::FromArgb(30, 30, 30)
 
 # Header Label
 $headerLabel = New-Object System.Windows.Forms.Label
-$headerLabel.Text = "🚀 Win11DebloatMinimal v2.0"
+$headerLabel.Text = "Win11DebloatMinimal v2.0"
 $headerLabel.Font = New-Object System.Drawing.Font("Segoe UI", 16, [System.Drawing.FontStyle]::Bold)
 $headerLabel.ForeColor = [System.Drawing.Color]::FromArgb(0, 120, 215)
 $headerLabel.Location = New-Object System.Drawing.Point(20, 10)
@@ -98,7 +98,7 @@ function New-CheckedListBox {
 # =========================
 
 $tabApps = New-Object System.Windows.Forms.TabPage
-$tabApps.Text = "🗑️ Remove Apps"
+$tabApps.Text = "Remove Apps"
 $checkedListApps = New-CheckedListBox @(
     'Uninstall OneDrive',
     'Remove Xbox App (Gaming)',
@@ -128,7 +128,7 @@ $tabApps.Controls.Add($checkedListApps)
 # =========================
 
 $tabPrivacy = New-Object System.Windows.Forms.TabPage
-$tabPrivacy.Text = "🔒 Privacy"
+$tabPrivacy.Text = "Privacy & Telemetry"
 $checkedListPrivacy = New-CheckedListBox @(
     'Disable Telemetry Services',
     'Disable Windows Tips',
@@ -154,7 +154,7 @@ $tabPrivacy.Controls.Add($checkedListPrivacy)
 # =========================
 
 $tabTweaks = New-Object System.Windows.Forms.TabPage
-$tabTweaks.Text = "⚙️ System Tweaks"
+$tabTweaks.Text = "System Tweaks"
 $checkedListTweaks = New-CheckedListBox @(
     'Show File Extensions',
     'Show Hidden Files',
@@ -184,7 +184,7 @@ $tabTweaks.Controls.Add($checkedListTweaks)
 # =========================
 
 $tabServices = New-Object System.Windows.Forms.TabPage
-$tabServices.Text = "🔧 Services"
+$tabServices.Text = "Services"
 $checkedListServices = New-CheckedListBox @(
     'Disable Connected User Experience (DiagTrack)',
     'Disable WAP Push Service',
@@ -204,7 +204,7 @@ $tabServices.Controls.Add($checkedListServices)
 # =========================
 
 $tabFeatures = New-Object System.Windows.Forms.TabPage
-$tabFeatures.Text = "📦 Windows Features"
+$tabFeatures.Text = "Windows Features"
 $checkedListFeatures = New-CheckedListBox @(
     'Disable Hyper-V',
     'Disable Windows Sandbox',
@@ -769,7 +769,7 @@ $buttonRefresh = New-UIButton "Refresh" 230 {
 $form.Controls.Add($buttonRefresh)
 
 # Apply
-$buttonApply = New-UIButton "🚀 Apply Changes" 580 {
+$buttonApply = New-UIButton "Apply Changes" 580 {
     if (-not (Test-Administrator)) {
         [System.Windows.Forms.MessageBox]::Show("Please run as Administrator!", "Error", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Error)
         return
